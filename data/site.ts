@@ -20,8 +20,8 @@ export const person = {
 export const about = {
   paragraphs: [
     "I'm a Head of Product who specializes in turning complex AI systems into clear, practical products people love.",
-    "With 15+ years spanning software, media tech, and immersive experiences, I've built a career around simplifying complexity. My work sits at the intersection of AI, UX, and engineering, where clarity and execution matter most.",
-    "I combine deep technical fluency (OpenAI, Vertex, Pinecone, GCP, MySQL/MongoDB, Python/JS) with systems thinking and calm, intentional product leadership. I partner closely with engineers and designers to ship features that are grounded in real user behavior, not hype.",
+    "With 15+ years spanning software, media tech, healthcare, and immersive experiences, I've built a career around simplifying complexity. My work sits at the intersection of AI, UX, and engineering, where clarity and execution matter most.",
+    "I combine deep technical fluency (Claude, OpenAI, Vertex, Pinecone, GCP, MySQL/MongoDB, Python/JS) with systems thinking and calm, intentional product leadership. I partner closely with engineers and designers to ship features that are grounded in real user behavior, not hype.",
   ],
   focusAreas: [
     "Practical, responsible AI that solves real user problems",
