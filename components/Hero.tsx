@@ -1,4 +1,5 @@
 import { person } from "@/data/site";
+import HeroField from "@/components/HeroField";
 
 export default function Hero() {
   return (
@@ -8,6 +9,8 @@ export default function Hero() {
         className="pointer-events-none absolute -top-24 right-0 h-72 w-72 rounded-full opacity-40 blur-3xl sm:h-96 sm:w-96"
         style={{ background: "var(--accent-soft)" }}
       />
+
+      <HeroField />
 
       <div className="relative">
         {person.openToWork && (
