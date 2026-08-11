@@ -37,7 +37,7 @@ const shipGrid = [
 ];
 
 const shipColors: Record<string, string> = {
-  W: "#ffffff",
+  W: "var(--foreground)",
   R: "#ef4444",
   B: "#2563eb",
 };
@@ -64,7 +64,7 @@ export default function HeroField() {
       <svg
         viewBox="0 0 26 24"
         shapeRendering="crispEdges"
-        className="absolute -bottom-6 -right-6 h-28 w-28 opacity-25 sm:h-40 sm:w-40"
+        className="absolute bottom-10 right-10 h-20 w-20 opacity-25 sm:bottom-14 sm:right-16 sm:h-28 sm:w-28"
       >
         {shipGrid.flatMap((row, y) =>
           [...row].map((cell, x) =>
