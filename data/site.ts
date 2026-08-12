@@ -118,6 +118,7 @@ export const podcastEpisodes = [
     description:
       "How product leaders \"own the mess\" — turning vague signals into structured problems, and how AI-assisted prototyping is compressing product timelines.",
     url: "https://www.signalandnoise.ai/post/structure-the-ambiguity-lucas-longacre-zach-grumet-on-product-ai-and-the-real-work-of-building",
+    videoId: undefined as string | undefined,
   },
   {
     title: "Beyond the Stack",
@@ -125,6 +126,7 @@ export const podcastEpisodes = [
     date: "",
     description: "A conversation on what actually matters beyond your tech stack when building AI products.",
     url: "https://www.youtube.com/watch?v=iH6une2ANas",
+    videoId: "iH6une2ANas",
   },
   {
     title: "Dispatch from AICon USA",
@@ -132,5 +134,6 @@ export const podcastEpisodes = [
     date: "",
     description: "Field notes and takeaways from AICon USA 2026.",
     url: "https://www.youtube.com/watch?v=KGZSB-lxWnM",
+    videoId: "KGZSB-lxWnM",
   },
 ];
