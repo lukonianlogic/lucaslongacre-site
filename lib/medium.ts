@@ -5,6 +5,7 @@ export type Article = {
   url: string;
   date: string;
   excerpt: string;
+  image?: string;
 };
 
 const FEED_URL = "https://medium.com/feed/@lucas-longacre";
@@ -37,6 +38,8 @@ export async function getMediumArticles(limit = 3): Promise<Article[]> {
     return list.slice(0, limit).map((item) => {
       const rawSummary: string = item.description ?? "";
       const excerpt = stripHtml(rawSummary).slice(0, 160);
+      const content: string = item["content:encoded"] ?? "";
+      const imageMatch = content.match(/<img[^>]*src="([^"]+)"/);
       return {
         title: stripHtml(item.title ?? ""),
         url: item.link ?? "",
@@ -47,6 +50,7 @@ export async function getMediumArticles(limit = 3): Promise<Article[]> {
             })
           : "",
         excerpt: excerpt.length === 160 ? `${excerpt}…` : excerpt,
+        image: imageMatch?.[1],
       };
     });
   } catch {

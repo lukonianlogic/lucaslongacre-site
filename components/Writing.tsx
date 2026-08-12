@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { getMediumArticles } from "@/lib/medium";
 import { person, linkedinArticles } from "@/data/site";
 import Eyebrow from "@/components/Eyebrow";
@@ -7,6 +8,7 @@ type WritingItem = {
   url: string;
   date: string;
   excerpt: string;
+  image?: string;
   source: "Medium" | "LinkedIn";
 };
 
@@ -44,24 +46,40 @@ export default async function Writing() {
               href={article.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="group block border-b border-border pb-6 last:border-b-0"
+              className="group flex gap-4 border-b border-border pb-6 last:border-b-0 sm:gap-6"
             >
-              <div className="flex flex-wrap items-center justify-between gap-2">
-                <div className="flex flex-wrap items-center gap-2">
-                  <span className="rounded-full bg-accent-soft px-2 py-0.5 text-[11px] font-medium text-accent">
-                    {article.source}
-                  </span>
-                  <h3 className="text-base font-semibold group-hover:text-accent">
-                    {article.title}
-                  </h3>
+              {article.image ? (
+                <div className="relative h-20 w-28 shrink-0 overflow-hidden rounded-xl bg-accent-soft sm:h-24 sm:w-36">
+                  <Image
+                    src={article.image}
+                    alt=""
+                    fill
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    sizes="144px"
+                  />
                 </div>
-                {article.date && (
-                  <span className="whitespace-nowrap text-xs text-muted">{article.date}</span>
+              ) : (
+                <div className="hidden h-20 w-28 shrink-0 rounded-xl bg-accent-soft sm:block sm:h-24 sm:w-36" />
+              )}
+
+              <div className="min-w-0 flex-1">
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="rounded-full bg-accent-soft px-2 py-0.5 text-[11px] font-medium text-accent">
+                      {article.source}
+                    </span>
+                    <h3 className="text-base font-semibold group-hover:text-accent">
+                      {article.title}
+                    </h3>
+                  </div>
+                  {article.date && (
+                    <span className="whitespace-nowrap text-xs text-muted">{article.date}</span>
+                  )}
+                </div>
+                {article.excerpt && (
+                  <p className="mt-2 line-clamp-2 text-sm leading-6 text-muted">{article.excerpt}</p>
                 )}
               </div>
-              {article.excerpt && (
-                <p className="mt-2 text-sm leading-6 text-muted">{article.excerpt}</p>
-              )}
             </a>
           ))}
         </div>

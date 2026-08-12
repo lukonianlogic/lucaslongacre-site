@@ -40,6 +40,8 @@ export const linkedinArticles = [
     date: "February 2026",
     excerpt:
       "How Inlightened uses AI with clear boundaries and minimal data exposure — natural-language search, profile enhancement, and quality audits that keep a human in the loop.",
+    image:
+      "https://media.licdn.com/dms/image/v2/D5612AQHHss3GomRBBQ/article-cover_image-shrink_720_1280/B56Zx2o5HvGoAI-/0/1771516958326?e=2147483647&v=beta&t=IYfobAdD37QTWiCAd3oSn98EEQOz-HN4O4uBfq_ngDE",
   },
 ];
 
