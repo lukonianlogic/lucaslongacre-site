@@ -118,7 +118,7 @@ export const podcastEpisodes = [
     description:
       "How product leaders \"own the mess\" — turning vague signals into structured problems, and how AI-assisted prototyping is compressing product timelines.",
     url: "https://www.signalandnoise.ai/post/structure-the-ambiguity-lucas-longacre-zach-grumet-on-product-ai-and-the-real-work-of-building",
-    videoId: undefined as string | undefined,
+    videoId: "nGY1k1JgYL4" as string | undefined,
   },
   {
     title: "Beyond the Stack",

@@ -1,8 +1,42 @@
 import Image from "next/image";
 import { person, podcastEpisodes } from "@/data/site";
+import { getLiveExecutiveVoicesEpisodes } from "@/lib/signalAndNoise";
 import Eyebrow from "@/components/Eyebrow";
 
-export default function Podcast() {
+type Card = {
+  title: string;
+  guest?: string;
+  date: string;
+  description: string;
+  url: string;
+  thumbnail?: string;
+};
+
+export default async function Podcast() {
+  const liveEpisodes = await getLiveExecutiveVoicesEpisodes();
+
+  const curated: Card[] = podcastEpisodes.map((ep) => ({
+    title: ep.title,
+    guest: ep.guest,
+    date: ep.date,
+    description: ep.description,
+    url: ep.url,
+    thumbnail: ep.videoId ? `https://i.ytimg.com/vi/${ep.videoId}/hqdefault.jpg` : undefined,
+  }));
+
+  const known = new Set(curated.map((c) => c.url));
+  const fresh: Card[] = liveEpisodes
+    .filter((ep) => !known.has(ep.url))
+    .map((ep) => ({
+      title: ep.title,
+      date: ep.date,
+      description: ep.description,
+      url: ep.url,
+      thumbnail: ep.image,
+    }));
+
+  const episodes = [...fresh, ...curated];
+
   return (
     <section id="podcast" className="border-y border-border bg-surface">
       <div className="mx-auto max-w-5xl px-6 py-16">
@@ -23,18 +57,18 @@ export default function Podcast() {
         </p>
 
         <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
-          {podcastEpisodes.map((ep) => (
+          {episodes.map((ep) => (
             <a
-              key={ep.title}
+              key={ep.url}
               href={ep.url}
               target="_blank"
               rel="noopener noreferrer"
               className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-background transition-colors hover:border-accent"
             >
-              {ep.videoId ? (
+              {ep.thumbnail ? (
                 <div className="relative aspect-video w-full overflow-hidden bg-black">
                   <Image
-                    src={`https://i.ytimg.com/vi/${ep.videoId}/hqdefault.jpg`}
+                    src={ep.thumbnail}
                     alt={ep.title}
                     fill
                     className="object-cover transition-transform duration-300 group-hover:scale-105"
