@@ -112,6 +112,51 @@ export const education = [
   { degree: "Certificate, Full Stack Development", school: "UT Austin" },
 ];
 
+export const caseStudy = {
+  org: "Inlightened",
+  intro:
+    "I joined Inlightened when the platform was still an early-stage MVP. Since then I've led it through a stability rebuild, a 10x growth phase, the platform's first AI feature, and now the product integration of our parent company's 1M+ expert panel.",
+  stats: [
+    { value: "10x", label: "Expert panel growth in year one" },
+    { value: "1M+", label: "Experts being integrated via parent-company merger" },
+    { value: "AI-Powered", label: "Shipped the platform's first native AI feature" },
+  ],
+  milestones: [
+    {
+      period: "2024",
+      title: "Rebuilt the foundation",
+      description:
+        "Inherited an early-stage MVP and led the platform rebuild for stability at scale — fixing systemic backend performance issues, closing payment-integrity gaps, and shipping an end-to-end Sales → Concierge → Invoice project lifecycle that replaced a manual, multi-tool workflow.",
+    },
+    {
+      period: "2025",
+      title: "Built the growth engine",
+      description:
+        "Grew the expert panel 10x by building bulk-import tooling, a self-serve referral program, and a streamlined onboarding and signup flow.",
+    },
+    {
+      period: "Early 2026",
+      title: "Shipped AI and verified trust",
+      description:
+        "Launched Inlightened's first AI feature — a Natural Language Query interface letting non-technical staff query platform data in plain English — and began building verified-credential infrastructure (clinical credential data plus government ID and biometric identity verification) to replace self-reported profile data with real-time, source-of-truth verification.",
+    },
+    {
+      period: "Mid 2026",
+      title: "Leading the parent-company integration",
+      description:
+        "Leading product integration of Jackson Healthcare / LocumTenens.com's 1M+ expert panel following the parent-company acquisition — designing the account-migration flow that lets experts bring their existing profile, history, and credentials into Inlightened with zero duplicate accounts.",
+    },
+    {
+      period: "Now / What's next",
+      title: "Feasibility Calculator & Provider Search",
+      description:
+        "Built a Feasibility Calculator and Provider Search that run on live platform data instead of estimates, giving real-time visibility into whether a project is achievable before it's launched. In beta with internal teams this quarter, rolling out to customers next.",
+    },
+  ],
+  closingNote:
+    "Shipped through a recurring \"State of the Product\" release cadence — bi-weekly to monthly, scaling to quarterly for larger releases — that keeps Sales, Concierge, Admin, and Marketing aligned on what shipped, what's changing, and what's next.",
+};
+
 export const podcastEpisodes = [
   {
     title: "Structure the Ambiguity: Product, AI, and the Real Work of Building",

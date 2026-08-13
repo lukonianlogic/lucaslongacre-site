@@ -6,6 +6,7 @@ import { person } from "@/data/site";
 const links = [
   { href: "#about", label: "About" },
   { href: "#experience", label: "Experience" },
+  { href: "#case-study", label: "Case Study" },
   { href: "#podcast", label: "Signal & Noise" },
   { href: "#writing", label: "Writing" },
   { href: "#contact", label: "Contact" },

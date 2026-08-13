@@ -2,6 +2,7 @@ import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Skills from "@/components/Skills";
 import Experience from "@/components/Experience";
+import CaseStudy from "@/components/CaseStudy";
 import Podcast from "@/components/Podcast";
 import Writing from "@/components/Writing";
 
@@ -12,6 +13,7 @@ export default function Home() {
       <About />
       <Skills />
       <Experience />
+      <CaseStudy />
       <Podcast />
       <Writing />
     </>
