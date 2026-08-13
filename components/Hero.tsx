@@ -12,7 +12,7 @@ export default function Hero() {
 
       <HeroField />
 
-      <div className="relative">
+      <div className="relative pointer-events-none">
         {person.openToWork && (
           <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1 text-xs text-muted">
             <span className="h-1.5 w-1.5 rounded-full bg-accent" />
@@ -32,7 +32,7 @@ export default function Hero() {
           {person.blurb}
         </p>
 
-        <div className="mt-10 flex flex-wrap gap-3">
+        <div className="pointer-events-auto mt-10 flex flex-wrap gap-3">
           <a
             href="#experience"
             className="rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background transition-opacity hover:opacity-90"
