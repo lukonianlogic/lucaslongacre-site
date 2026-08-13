@@ -114,6 +114,7 @@ export const education = [
 
 export const caseStudy = {
   org: "Inlightened",
+  url: "https://www.getinlightened.com",
   intro:
     "I joined Inlightened when the platform was still an early-stage MVP. Since then I've led it through a stability rebuild, a 10x growth phase, the platform's first AI feature, and now the product integration of our parent company's 1M+ expert panel.",
   stats: [

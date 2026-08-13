@@ -6,9 +6,17 @@ export default function CaseStudy() {
     <section id="case-study" className="border-y border-border bg-surface">
       <div className="mx-auto max-w-5xl px-6 py-16">
         <Eyebrow>Case Study</Eyebrow>
-        <h2 className="mt-3 text-4xl font-semibold tracking-tight sm:text-6xl">
-          {caseStudy.org}
-        </h2>
+        <div className="mt-3 flex flex-wrap items-baseline gap-x-4 gap-y-1">
+          <h2 className="text-4xl font-semibold tracking-tight sm:text-6xl">{caseStudy.org}</h2>
+          <a
+            href={caseStudy.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm font-medium text-accent hover:underline"
+          >
+            getinlightened.com →
+          </a>
+        </div>
 
         <p className="mt-6 max-w-2xl text-base leading-7 text-muted sm:text-lg sm:leading-8">
           {caseStudy.intro}
