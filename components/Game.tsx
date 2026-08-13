@@ -12,13 +12,14 @@ const CANVAS_W = 340;
 const CANVAS_H = 460;
 const ROWS = 4;
 const COLS = 6;
+const WAVE_CLEAR_AUTO_ADVANCE_FRAMES = 150;
 
 type Bullet = { x: number; y: number };
 type Enemy = { row: number; col: number; alive: boolean };
 
 type GameState = {
   playerX: number;
-  keys: { left: boolean; right: boolean; fire: boolean };
+  keys: { left: boolean; right: boolean };
   bullets: Bullet[];
   enemyBullets: Bullet[];
   enemies: Enemy[];
@@ -34,6 +35,13 @@ type GameState = {
   invulnerable: number;
   started: boolean;
   gameOver: boolean;
+  waveClear: boolean;
+  waveClearTimer: number;
+  waveShots: number;
+  waveHits: number;
+  waveLivesLost: number;
+  waveRatingVerdict: string;
+  waveAccuracy: number;
   stars: { x: number; y: number; r: number }[];
 };
 
@@ -50,7 +58,7 @@ function freshEnemies(): Enemy[] {
 function freshState(): GameState {
   return {
     playerX: CANVAS_W / 2 - PLAYER_W / 2,
-    keys: { left: false, right: false, fire: false },
+    keys: { left: false, right: false },
     bullets: [],
     enemyBullets: [],
     enemies: freshEnemies(),
@@ -66,6 +74,13 @@ function freshState(): GameState {
     invulnerable: 0,
     started: false,
     gameOver: false,
+    waveClear: false,
+    waveClearTimer: 0,
+    waveShots: 0,
+    waveHits: 0,
+    waveLivesLost: 0,
+    waveRatingVerdict: "",
+    waveAccuracy: 0,
     stars: Array.from({ length: 40 }, () => ({
       x: Math.random() * CANVAS_W,
       y: Math.random() * CANVAS_H,
@@ -74,9 +89,20 @@ function freshState(): GameState {
   };
 }
 
+function rateWave(s: GameState): { verdict: string; accuracy: number } {
+  const accuracy = s.waveShots > 0 ? Math.round((s.waveHits / s.waveShots) * 100) : 100;
+  let verdict: string;
+  if (s.waveLivesLost === 0 && accuracy >= 70) verdict = "FLAWLESS WAVE!";
+  else if (s.waveLivesLost === 0) verdict = "NO DAMAGE TAKEN";
+  else if (s.waveLivesLost === 1) verdict = "SOLID RUN";
+  else verdict = "TOUGH WAVE";
+  return { verdict, accuracy };
+}
+
 export default function Game({ open, onClose }: { open: boolean; onClose: () => void }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const stateRef = useRef<GameState>(freshState());
+  const activateRef = useRef<() => void>(() => {});
 
   useEffect(() => {
     if (!open) return;
@@ -94,6 +120,20 @@ export default function Game({ open, onClose }: { open: boolean; onClose: () => 
 
     const s = stateRef.current;
 
+    function advanceWave() {
+      s.wave++;
+      s.enemies = freshEnemies();
+      s.formationX = 30;
+      s.formationY = 40;
+      s.speed = 0.6 + s.wave * 0.15;
+      s.dir = 1;
+      s.waveClear = false;
+      s.waveClearTimer = 0;
+      s.waveShots = 0;
+      s.waveHits = 0;
+      s.waveLivesLost = 0;
+    }
+
     function startOrRestart() {
       if (s.gameOver) {
         stateRef.current = { ...freshState(), started: true };
@@ -103,11 +143,19 @@ export default function Game({ open, onClose }: { open: boolean; onClose: () => 
     }
 
     function playerFire() {
-      if (s.fireCooldown <= 0 && s.started && !s.gameOver) {
+      if (s.fireCooldown <= 0 && s.started && !s.gameOver && !s.waveClear) {
         s.bullets.push({ x: s.playerX + PLAYER_W / 2 - 1, y: CANVAS_H - 60 });
         s.fireCooldown = 16;
+        s.waveShots++;
       }
     }
+
+    function handleActivate() {
+      if (!s.started || s.gameOver) startOrRestart();
+      else if (s.waveClear) advanceWave();
+      else playerFire();
+    }
+    activateRef.current = handleActivate;
 
     function onKeyDown(e: KeyboardEvent) {
       if (["ArrowLeft", "ArrowRight", "ArrowUp", " ", "Enter"].includes(e.key)) {
@@ -119,11 +167,7 @@ export default function Game({ open, onClose }: { open: boolean; onClose: () => 
       }
       if (e.key === "ArrowLeft" || e.key === "a" || e.key === "A") s.keys.left = true;
       if (e.key === "ArrowRight" || e.key === "d" || e.key === "D") s.keys.right = true;
-      if (e.key === " " || e.key === "ArrowUp") {
-        if (!s.started || s.gameOver) startOrRestart();
-        else playerFire();
-      }
-      if (e.key === "Enter" && (s.gameOver || !s.started)) startOrRestart();
+      if (e.key === " " || e.key === "ArrowUp" || e.key === "Enter") handleActivate();
     }
     function onKeyUp(e: KeyboardEvent) {
       if (e.key === "ArrowLeft" || e.key === "a" || e.key === "A") s.keys.left = false;
@@ -152,6 +196,12 @@ export default function Game({ open, onClose }: { open: boolean; onClose: () => 
     function update() {
       if (!s.started || s.gameOver) return;
 
+      if (s.waveClear) {
+        s.waveClearTimer++;
+        if (s.waveClearTimer > WAVE_CLEAR_AUTO_ADVANCE_FRAMES) advanceWave();
+        return;
+      }
+
       if (s.keys.left) s.playerX -= 3.2;
       if (s.keys.right) s.playerX += 3.2;
       s.playerX = Math.max(4, Math.min(CANVAS_W - PLAYER_W - 4, s.playerX));
@@ -169,38 +219,40 @@ export default function Game({ open, onClose }: { open: boolean; onClose: () => 
       const aliveCount = s.enemies.filter((e) => e.alive).length;
 
       if (aliveCount === 0) {
-        s.wave++;
-        s.enemies = freshEnemies();
-        s.formationX = 30;
-        s.formationY = 40;
-        s.speed = 0.6 + s.wave * 0.15;
-        s.dir = 1;
-      } else {
-        s.formationX += s.dir * s.speed;
-        const leftEdge = s.formationX + minCol * (INVADER_W + 12);
-        const rightEdge = s.formationX + maxCol * (INVADER_W + 12) + INVADER_W;
-        if (leftEdge < 8 || rightEdge > CANVAS_W - 8) {
-          s.dir *= -1;
-          s.formationY += 14;
-          s.speed = Math.min(s.speed + 0.08, 3.5);
-        }
+        const { verdict, accuracy } = rateWave(s);
+        s.waveRatingVerdict = verdict;
+        s.waveAccuracy = accuracy;
+        s.waveClear = true;
+        s.waveClearTimer = 0;
+        s.bullets = [];
+        s.enemyBullets = [];
+        return;
+      }
 
-        const bottomY = s.formationY + maxRow * (INVADER_H + 12) + INVADER_H;
-        if (bottomY >= CANVAS_H - 70) {
-          s.gameOver = true;
-        }
+      s.formationX += s.dir * s.speed;
+      const leftEdge = s.formationX + minCol * (INVADER_W + 12);
+      const rightEdge = s.formationX + maxCol * (INVADER_W + 12) + INVADER_W;
+      if (leftEdge < 8 || rightEdge > CANVAS_W - 8) {
+        s.dir *= -1;
+        s.formationY += 14;
+        s.speed = Math.min(s.speed + 0.08, 3.5);
+      }
 
-        if (s.enemyFireCooldown > 0) {
-          s.enemyFireCooldown--;
-        } else if (s.enemyBullets.length < 3) {
-          const shooters = s.enemies.filter((e) => e.alive);
-          if (shooters.length > 0 && Math.random() < 0.35) {
-            const shooter = shooters[Math.floor(Math.random() * shooters.length)];
-            const ex = s.formationX + shooter.col * (INVADER_W + 12) + INVADER_W / 2;
-            const ey = s.formationY + shooter.row * (INVADER_H + 12) + INVADER_H;
-            s.enemyBullets.push({ x: ex, y: ey });
-            s.enemyFireCooldown = 40;
-          }
+      const bottomY = s.formationY + maxRow * (INVADER_H + 12) + INVADER_H;
+      if (bottomY >= CANVAS_H - 70) {
+        s.gameOver = true;
+      }
+
+      if (s.enemyFireCooldown > 0) {
+        s.enemyFireCooldown--;
+      } else if (s.enemyBullets.length < 3) {
+        const shooters = s.enemies.filter((e) => e.alive);
+        if (shooters.length > 0 && Math.random() < 0.35) {
+          const shooter = shooters[Math.floor(Math.random() * shooters.length)];
+          const ex = s.formationX + shooter.col * (INVADER_W + 12) + INVADER_W / 2;
+          const ey = s.formationY + shooter.row * (INVADER_H + 12) + INVADER_H;
+          s.enemyBullets.push({ x: ex, y: ey });
+          s.enemyFireCooldown = 40;
         }
       }
 
@@ -213,6 +265,7 @@ export default function Game({ open, onClose }: { open: boolean; onClose: () => 
             enemy.alive = false;
             b.y = -100;
             s.score += 10;
+            s.waveHits++;
           }
         }
       }
@@ -228,6 +281,7 @@ export default function Game({ open, onClose }: { open: boolean; onClose: () => 
           ) {
             b.y = CANVAS_H + 100;
             s.lives--;
+            s.waveLivesLost++;
             s.invulnerable = 90;
             if (s.lives <= 0) s.gameOver = true;
           }
@@ -309,6 +363,18 @@ export default function Game({ open, onClose }: { open: boolean; onClose: () => 
         ctx!.fillText(`SCORE ${s.score}`, CANVAS_W / 2, CANVAS_H / 2 + 2);
         ctx!.fillStyle = "#a1a1aa";
         ctx!.fillText("SPACE / TAP TO RETRY", CANVAS_W / 2, CANVAS_H / 2 + 24);
+      } else if (s.waveClear) {
+        ctx!.textAlign = "center";
+        ctx!.fillStyle = "#818cf8";
+        ctx!.font = "bold 16px ui-monospace, monospace";
+        ctx!.fillText(`WAVE ${s.wave} CLEAR`, CANVAS_W / 2, CANVAS_H / 2 - 28);
+        ctx!.fillStyle = "#f4f4f5";
+        ctx!.font = "bold 13px ui-monospace, monospace";
+        ctx!.fillText(s.waveRatingVerdict, CANVAS_W / 2, CANVAS_H / 2 - 4);
+        ctx!.fillStyle = "#a1a1aa";
+        ctx!.font = "12px ui-monospace, monospace";
+        ctx!.fillText(`${s.waveAccuracy}% ACCURACY`, CANVAS_W / 2, CANVAS_H / 2 + 16);
+        ctx!.fillText("SPACE / TAP FOR NEXT WAVE", CANVAS_W / 2, CANVAS_H / 2 + 38);
       }
     }
 
@@ -320,8 +386,7 @@ export default function Game({ open, onClose }: { open: boolean; onClose: () => 
     raf = requestAnimationFrame(loop);
 
     function onCanvasPress() {
-      if (!s.started || s.gameOver) startOrRestart();
-      else playerFire();
+      handleActivate();
     }
     canvas.addEventListener("pointerdown", onCanvasPress);
 
@@ -391,16 +456,7 @@ export default function Game({ open, onClose }: { open: boolean; onClose: () => 
           <button
             type="button"
             aria-label="Fire"
-            onPointerDown={() => {
-              const s = stateRef.current;
-              if (!s.started || s.gameOver) {
-                if (s.gameOver) stateRef.current = { ...freshState(), started: true };
-                else s.started = true;
-              } else if (s.fireCooldown <= 0) {
-                s.bullets.push({ x: s.playerX + PLAYER_W / 2 - 1, y: CANVAS_H - 60 });
-                s.fireCooldown = 16;
-              }
-            }}
+            onPointerDown={() => activateRef.current()}
             className="flex h-11 w-16 items-center justify-center rounded-full border border-border text-xs font-medium text-foreground active:bg-accent-soft"
           >
             FIRE
