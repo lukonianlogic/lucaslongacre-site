@@ -5,7 +5,10 @@ export default function CaseStudy() {
   return (
     <section id="case-study" className="border-y border-border bg-surface">
       <div className="mx-auto max-w-5xl px-6 py-16">
-        <Eyebrow>Case Study — {caseStudy.org}</Eyebrow>
+        <Eyebrow>Case Study</Eyebrow>
+        <h2 className="mt-3 text-4xl font-semibold tracking-tight sm:text-6xl">
+          {caseStudy.org}
+        </h2>
 
         <p className="mt-6 max-w-2xl text-base leading-7 text-muted sm:text-lg sm:leading-8">
           {caseStudy.intro}
