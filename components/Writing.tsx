@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { getMediumArticles } from "@/lib/medium";
+import { getSubstackArticles } from "@/lib/substack";
 import { person, linkedinArticles } from "@/data/site";
 import Eyebrow from "@/components/Eyebrow";
 
@@ -9,15 +10,19 @@ type WritingItem = {
   date: string;
   excerpt: string;
   image?: string;
-  source: "Medium" | "LinkedIn";
+  source: "Medium" | "Substack" | "LinkedIn";
 };
 
 export default async function Writing() {
-  const mediumArticles = await getMediumArticles(4);
+  const [mediumArticles, substackArticles] = await Promise.all([
+    getMediumArticles(4),
+    getSubstackArticles(4),
+  ]);
 
   const items: WritingItem[] = [
     ...linkedinArticles.map((a) => ({ ...a, source: "LinkedIn" as const })),
     ...mediumArticles.map((a) => ({ ...a, source: "Medium" as const })),
+    ...substackArticles.map((a) => ({ ...a, source: "Substack" as const })),
   ].sort((a, b) => {
     const dateA = a.date ? new Date(a.date).getTime() : 0;
     const dateB = b.date ? new Date(b.date).getTime() : 0;
@@ -31,6 +36,9 @@ export default async function Writing() {
         <div className="flex gap-4 text-sm">
           <a href={person.links.medium} target="_blank" rel="noopener noreferrer" className="font-medium text-accent hover:underline">
             Medium →
+          </a>
+          <a href={person.links.substack} target="_blank" rel="noopener noreferrer" className="font-medium text-accent hover:underline">
+            Substack →
           </a>
           <a href={person.links.linkedin} target="_blank" rel="noopener noreferrer" className="font-medium text-accent hover:underline">
             LinkedIn →
@@ -88,6 +96,10 @@ export default async function Writing() {
           Latest articles are on{" "}
           <a href={person.links.medium} className="text-accent hover:underline">
             Medium
+          </a>{" "}
+          and{" "}
+          <a href={person.links.substack} className="text-accent hover:underline">
+            Substack
           </a>
           .
         </p>

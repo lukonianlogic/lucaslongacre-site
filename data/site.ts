@@ -13,6 +13,7 @@ export const person = {
     linkedin: "https://www.linkedin.com/in/lucaslongacre/",
     github: "https://github.com/lukonianlogic",
     medium: "https://medium.com/@lucas-longacre",
+    substack: "https://lucaslongacre.substack.com",
     podcast: "https://www.signalandnoise.ai/executive-voices",
   },
 };

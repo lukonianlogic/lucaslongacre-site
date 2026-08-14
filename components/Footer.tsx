@@ -24,6 +24,9 @@ export default function Footer() {
           <a href={person.links.medium} target="_blank" rel="noopener noreferrer" className="text-muted hover:text-foreground">
             Medium
           </a>
+          <a href={person.links.substack} target="_blank" rel="noopener noreferrer" className="text-muted hover:text-foreground">
+            Substack
+          </a>
         </div>
       </div>
       <div className="mx-auto max-w-5xl px-6 pb-8 text-xs text-muted">

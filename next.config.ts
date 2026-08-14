@@ -19,6 +19,14 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "media.licdn.com",
       },
+      {
+        protocol: "https",
+        hostname: "substackcdn.com",
+      },
+      {
+        protocol: "https",
+        hostname: "substack-post-media.s3.amazonaws.com",
+      },
     ],
   },
 };

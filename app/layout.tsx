@@ -58,6 +58,7 @@ const personJsonLd = {
     person.links.linkedin,
     person.links.github,
     person.links.medium,
+    person.links.substack,
     person.links.podcast,
   ],
 };
