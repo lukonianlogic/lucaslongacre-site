@@ -9,6 +9,7 @@ export const person = {
   openToWork: true,
   openToWorkNote: "Open to Head of Product / senior AI product leadership roles.",
   email: "me@lucaslongacre.com",
+  resumeUrl: "/resume.pdf",
   links: {
     linkedin: "https://www.linkedin.com/in/lucaslongacre/",
     github: "https://github.com/lukonianlogic",

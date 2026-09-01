@@ -15,6 +15,9 @@ export default function Footer() {
           <a href={`mailto:${person.email}`} className="text-muted hover:text-foreground">
             {person.email}
           </a>
+          <a href={person.resumeUrl} download className="text-muted hover:text-foreground">
+            Resume
+          </a>
           <a href={person.links.linkedin} target="_blank" rel="noopener noreferrer" className="text-muted hover:text-foreground">
             LinkedIn
           </a>

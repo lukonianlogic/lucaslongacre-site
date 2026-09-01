@@ -45,6 +45,25 @@ export default function Hero() {
           >
             Get in touch
           </a>
+          <a
+            href={person.resumeUrl}
+            download
+            className="flex items-center gap-1.5 rounded-full border border-border px-5 py-2.5 text-sm font-medium transition-colors hover:bg-accent-soft"
+          >
+            Resume
+            <svg
+              aria-hidden
+              viewBox="0 0 16 16"
+              className="h-3.5 w-3.5"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.6"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M8 2v8m0 0-3-3m3 3 3-3M2.5 12v1.5A1.5 1.5 0 0 0 4 15h8a1.5 1.5 0 0 0 1.5-1.5V12" />
+            </svg>
+          </a>
         </div>
       </div>
     </section>
