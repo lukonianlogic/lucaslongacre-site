@@ -18,6 +18,20 @@ export const person = {
   },
 };
 
+export const consulting = {
+  headline: "Also available for consulting",
+  pitch:
+    "Outside of Inlightened, I help companies streamline internal workflows, automate manual processes, and turn scattered data into dashboards their teams can actually use — saving money, freeing up your team's time, and reducing dependence on expensive third-party tools.",
+  services: [
+    "Automate repetitive, manual processes",
+    "Build custom dashboards for real-time insights",
+    "Organize and structure your data so you can actually use it",
+    "Cut costs by reducing dependence on expensive third-party apps",
+    "Keep control of where your data lives",
+  ],
+  ctaNote: "Tell me a bit about what you're working on and I'll follow up.",
+};
+
 export const about = {
   paragraphs: [
     "I'm a Head of Product who specializes in turning complex AI systems into clear, practical products people love.",

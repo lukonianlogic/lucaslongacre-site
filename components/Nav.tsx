@@ -4,6 +4,7 @@ import { useState } from "react";
 import { person } from "@/data/site";
 
 const links = [
+  { href: "#consulting", label: "Consulting" },
   { href: "#about", label: "About" },
   { href: "#experience", label: "Experience" },
   { href: "#case-study", label: "Case Study" },
