@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import { person } from "@/data/site";
 import "./globals.css";
+
+const GA_MEASUREMENT_ID = "G-3HQ7BDNP8N";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -78,6 +81,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <main className="flex-1">{children}</main>
         <Footer />
       </body>
+      <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />
     </html>
   );
 }
