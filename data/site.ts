@@ -174,6 +174,17 @@ export const caseStudy = {
     "Shipped through a recurring \"State of the Product\" release cadence — bi-weekly to monthly, scaling to quarterly for larger releases — that keeps Sales, Concierge, Admin, and Marketing aligned on what shipped, what's changing, and what's next.",
 };
 
+export const testimonials = [
+  {
+    quote:
+      "Lucas brings both vision and execution to product development. He has an exceptional ability to identify opportunities for innovation while working closely with the team to turn those ideas into tangible progress. His collaborative approach ensures that technology, product strategy, and business goals remain aligned. Lucas's leadership has been central to advancing our platform and continuously improving the experience we deliver to our users.",
+    name: "Shelli Pavone",
+    title: "President",
+    company: "Inlightened",
+    photo: "/testimonials/shelli-pavone.jpg" as string | undefined,
+  },
+];
+
 export const podcastEpisodes = [
   {
     title: "Structure the Ambiguity: Product, AI, and the Real Work of Building",
