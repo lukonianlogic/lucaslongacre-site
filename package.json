@@ -12,7 +12,7 @@
     "@calcom/embed-react": "^1.5.3",
     "@next/third-parties": "^16.3.4",
     "fast-xml-parser": "^5.10.1",
-    "next": "16.3.0",
+    "next": "^16.3.6",
     "react": "19.2.8",
     "react-dom": "19.2.8"
   },
