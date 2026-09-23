@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { person, consulting } from "@/data/site";
 import Eyebrow from "@/components/Eyebrow";
+import BookCallButton from "@/components/BookCallButton";
 
 export default function Consulting() {
   const [name, setName] = useState("");
@@ -44,6 +45,12 @@ export default function Consulting() {
                 </li>
               ))}
             </ul>
+
+            <BookCallButton
+              calLink="consulting-call"
+              label="Book a call directly →"
+              className="mt-8 inline-flex items-center rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background transition-opacity hover:opacity-90"
+            />
           </div>
 
           <form

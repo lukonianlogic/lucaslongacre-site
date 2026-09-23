@@ -2,6 +2,7 @@ import Image from "next/image";
 import { person, podcastEpisodes } from "@/data/site";
 import { getLiveExecutiveVoicesEpisodes } from "@/lib/signalAndNoise";
 import Eyebrow from "@/components/Eyebrow";
+import BookCallButton from "@/components/BookCallButton";
 
 type Card = {
   title: string;
@@ -52,9 +53,16 @@ export default async function Podcast() {
           </a>
         </div>
 
-        <p className="mt-3 max-w-2xl text-sm text-muted">
-          I host conversations with product and AI leaders about what it actually takes to build.
-        </p>
+        <div className="mt-3 flex flex-wrap items-center justify-between gap-4">
+          <p className="max-w-2xl text-sm text-muted">
+            I host conversations with product and AI leaders about what it actually takes to build.
+          </p>
+          <BookCallButton
+            calLink="podcast-guest"
+            label="Book time to be a guest →"
+            className="shrink-0 rounded-full border border-border px-5 py-2.5 text-sm font-medium transition-colors hover:bg-accent-soft"
+          />
+        </div>
 
         <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
           {episodes.map((ep) => (
