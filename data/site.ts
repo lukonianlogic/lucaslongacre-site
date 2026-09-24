@@ -21,6 +21,7 @@ export const person = {
 
 export const consulting = {
   headline: "Also available for consulting",
+  entity: "Operating through LL Labs, LLC",
   pitch:
     "Outside of Inlightened, I help companies streamline internal workflows, automate manual processes, and turn scattered data into dashboards their teams can actually use — saving money, freeing up your team's time, and reducing dependence on expensive third-party tools.",
   services: [

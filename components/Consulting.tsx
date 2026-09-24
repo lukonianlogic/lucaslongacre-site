@@ -30,6 +30,7 @@ export default function Consulting() {
         <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
           {consulting.headline}
         </h2>
+        <p className="mt-1.5 text-sm text-muted">{consulting.entity}</p>
 
         <div className="mt-8 grid grid-cols-1 gap-10 lg:grid-cols-[1fr_1fr]">
           <div>
