@@ -1,5 +1,6 @@
 import Hero from "@/components/Hero";
 import Consulting from "@/components/Consulting";
+import FraudProtection from "@/components/FraudProtection";
 import About from "@/components/About";
 import Skills from "@/components/Skills";
 import Experience from "@/components/Experience";
@@ -13,6 +14,7 @@ export default function Home() {
     <>
       <Hero />
       <Consulting />
+      <FraudProtection />
       <About />
       <Skills />
       <Experience />

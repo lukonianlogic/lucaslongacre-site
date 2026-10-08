@@ -34,6 +34,13 @@ export const consulting = {
   ],
   fraud: {
     title: "AI Fraud Protection",
+    layersNote:
+      "The layers work together: behavioral signals flag risk early, ID verification confirms a real person is behind the account, and credential checks confirm that person is who they claim to be professionally.",
+    audience: [
+      "Marketplaces and networks that onboard credentialed professionals",
+      "Platforms where fake or duplicate accounts cost money or erode trust",
+      "Teams that still verify identity or credentials by hand",
+    ],
     intro:
       "I designed and launched the fraud-prevention layer for a credentialed-professional marketplace: three layers of defense that stop bad actors before they reach your platform, without slowing down legitimate users.",
     pillars: [

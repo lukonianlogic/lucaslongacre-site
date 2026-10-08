@@ -103,28 +103,6 @@ export default function Consulting() {
             </p>
           </form>
         </div>
-
-        <div className="mt-14">
-          <h3 className="text-2xl font-semibold tracking-tight sm:text-3xl">
-            {consulting.fraud.title}
-          </h3>
-          <p className="mt-3 max-w-2xl text-base leading-7 text-muted">
-            {consulting.fraud.intro}
-          </p>
-
-          <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
-            {consulting.fraud.pillars.map((pillar, i) => (
-              <div
-                key={pillar.title}
-                className="rounded-2xl border border-border border-t-2 border-t-accent bg-background p-5"
-              >
-                <div className="font-mono text-xs text-accent">0{i + 1}</div>
-                <h4 className="mt-2 text-base font-semibold">{pillar.title}</h4>
-                <p className="mt-2 text-sm leading-6 text-muted">{pillar.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
     </section>
   );

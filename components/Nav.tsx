@@ -4,13 +4,13 @@ import { useState } from "react";
 import { person } from "@/data/site";
 
 const links = [
-  { href: "#consulting", label: "Consulting" },
-  { href: "#about", label: "About" },
-  { href: "#experience", label: "Experience" },
-  { href: "#case-study", label: "Case Study" },
-  { href: "#podcast", label: "Signal & Noise" },
-  { href: "#writing", label: "Writing" },
-  { href: "#contact", label: "Contact" },
+  { href: "/#consulting", label: "Consulting" },
+  { href: "/#about", label: "About" },
+  { href: "/#experience", label: "Experience" },
+  { href: "/#case-study", label: "Case Study" },
+  { href: "/#podcast", label: "Signal & Noise" },
+  { href: "/#writing", label: "Writing" },
+  { href: "/#contact", label: "Contact" },
 ];
 
 export default function Nav() {
@@ -19,7 +19,7 @@ export default function Nav() {
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur">
       <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-        <a href="#top" className="font-mono text-sm font-semibold tracking-tight">
+        <a href="/" className="font-mono text-sm font-semibold tracking-tight">
           {person.name}
         </a>
 
