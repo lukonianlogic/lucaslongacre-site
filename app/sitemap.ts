@@ -17,6 +17,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: "https://lucaslongacre.com/signal-and-noise",
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
       url: "https://lucaslongacre.com/case-study/inlightened",
       lastModified: now,
       changeFrequency: "monthly",

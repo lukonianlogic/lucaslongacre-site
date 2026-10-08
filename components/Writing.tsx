@@ -3,6 +3,8 @@ import { getMediumArticles } from "@/lib/medium";
 import { getSubstackArticles } from "@/lib/substack";
 import { person, linkedinArticles } from "@/data/site";
 import Eyebrow from "@/components/Eyebrow";
+import JsonLd from "@/components/JsonLd";
+import { PERSON_ID, yearMonth } from "@/lib/schema";
 
 type WritingItem = {
   title: string;
@@ -29,8 +31,26 @@ export default async function Writing() {
     return dateB - dateA;
   });
 
+  const articlesJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListElement: items.map((article, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      item: {
+        "@type": "Article",
+        headline: article.title,
+        url: article.url,
+        datePublished: yearMonth(article.date),
+        author: { "@id": PERSON_ID },
+        publisher: { "@type": "Organization", name: article.source },
+      },
+    })),
+  };
+
   return (
     <section id="writing" className="mx-auto max-w-5xl px-6 py-16">
+      {items.length > 0 && <JsonLd data={articlesJsonLd} />}
       <div className="flex flex-wrap items-baseline justify-between gap-4">
         <Eyebrow>Writing</Eyebrow>
         <div className="flex gap-4 text-sm">

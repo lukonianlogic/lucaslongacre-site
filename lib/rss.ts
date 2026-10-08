@@ -1,4 +1,5 @@
 import { XMLParser } from "fast-xml-parser";
+import { stripHtml } from "@/lib/text";
 
 export type FeedArticle = {
   title: string;
@@ -7,17 +8,6 @@ export type FeedArticle = {
   excerpt: string;
   image?: string;
 };
-
-function stripHtml(html: string): string {
-  return html
-    .replace(/<[^>]*>/g, " ")
-    .replace(/&nbsp;/g, " ")
-    .replace(/&amp;/g, "&")
-    .replace(/&#39;/g, "'")
-    .replace(/&quot;/g, '"')
-    .replace(/\s+/g, " ")
-    .trim();
-}
 
 export async function getFeedArticles(feedUrl: string, limit = 3): Promise<FeedArticle[]> {
   try {

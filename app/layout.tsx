@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import JsonLd from "@/components/JsonLd";
+import { PERSON_ID, SITE_URL } from "@/lib/schema";
 import { person } from "@/data/site";
 import "./globals.css";
 
@@ -49,14 +51,25 @@ export const metadata: Metadata = {
 const personJsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
+  "@id": PERSON_ID,
   name: person.name,
   jobTitle: person.title,
+  description: person.tagline,
   worksFor: {
     "@type": "Organization",
     name: person.company,
+    url: "https://www.getinlightened.com",
   },
-  url: "https://lucaslongacre.com",
+  url: SITE_URL,
+  image: `${SITE_URL}/profile.jpg`,
   email: `mailto:${person.email}`,
+  knowsAbout: [
+    "Artificial intelligence",
+    "Large language models",
+    "Product management",
+    "Fraud prevention",
+    "Identity verification",
+  ],
   sameAs: [
     person.links.linkedin,
     person.links.github,
@@ -73,10 +86,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
-        />
+        <JsonLd data={personJsonLd} />
         <Nav />
         <main className="flex-1">{children}</main>
         <Footer />

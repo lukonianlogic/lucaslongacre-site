@@ -218,6 +218,32 @@ export const testimonials = [
 
 export const podcastEpisodes = [
   {
+    title: "Internal Tools Are the Next Frontier of AI",
+    guest: "",
+    date: "August 2026",
+    description:
+      "AI is making it possible to replace clunky dashboards, spreadsheets, and repetitive workflows with purpose-built internal applications, and why the next frontier of enterprise AI may be teams building software around how they actually work.",
+    url: "https://www.signalandnoise.ai/post/internal-tools-are-the-next-frontier-of-ai",
+    videoId: undefined as string | undefined,
+    image:
+      "https://static.wixstatic.com/media/868b7c_f240b53541ce421488535f959d7b2922~mv2.png/v1/fill/w_1000,h_669,al_c,q_90,usm_0.66_1.00_0.01/868b7c_f240b53541ce421488535f959d7b2922~mv2.png" as
+        | string
+        | undefined,
+  },
+  {
+    title: "Signal & Noise Live at AI Con",
+    guest: "with Ken Johnston, AiGovOps Foundation",
+    date: "August 2026",
+    description:
+      "What it really takes to scale AI safely: the risks of \"demo theater,\" why companies need stronger testing, security and observability, and why human judgment still matters.",
+    url: "https://www.signalandnoise.ai/post/signal-noise-live-at-ai-con-lucas-longacre-talks-with-ken-johnston-founder-of-aigovops-foundation",
+    videoId: undefined as string | undefined,
+    image:
+      "https://static.wixstatic.com/media/fc82ae_dc46f2a553014d36be0dc1f717efdf0d~mv2.png/v1/fill/w_1000,h_1000,al_c,q_90,usm_0.66_1.00_0.01/fc82ae_dc46f2a553014d36be0dc1f717efdf0d~mv2.png" as
+        | string
+        | undefined,
+  },
+  {
     title: "Structure the Ambiguity: Product, AI, and the Real Work of Building",
     guest: "with Zach Grumet",
     date: "March 25",
