@@ -30,7 +30,30 @@ export const consulting = {
     "Organize and structure your data so you can actually use it",
     "Cut costs by reducing dependence on expensive third-party apps",
     "Keep control of where your data lives",
+    "Design fraud prevention and identity verification for your platform",
   ],
+  fraud: {
+    title: "AI Fraud Protection",
+    intro:
+      "I designed and launched the fraud-prevention layer for a credentialed-professional marketplace: three layers of defense that stop bad actors before they reach your platform, without slowing down legitimate users.",
+    pillars: [
+      {
+        title: "Behavioral detection",
+        description:
+          "Automated alerts on suspicious signup activity, plus pattern recognition that flags profiles that look manufactured rather than real, so reviewers focus on the highest-risk accounts first.",
+      },
+      {
+        title: "Identity verification",
+        description:
+          "Government-issued ID verification through Stripe Identity, with a monitoring dashboard to send verification links and track completion end to end.",
+      },
+      {
+        title: "Credential verification",
+        description:
+          "Checks against authoritative public sources: NPPES for NPI validation and Axuall for licenses, credentials, and any disciplinary history.",
+      },
+    ],
+  },
   ctaNote: "Tell me a bit about what you're working on and I'll follow up.",
 };
 
