@@ -41,7 +41,7 @@ export default function Testimonials() {
               <div>
                 <div className="text-sm font-semibold">{t.name}</div>
                 <div className="text-xs text-muted">
-                  {t.title} · {t.company}
+                  {[t.title, t.company].filter(Boolean).join(" · ")}
                 </div>
               </div>
             </figcaption>

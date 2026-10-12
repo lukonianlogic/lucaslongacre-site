@@ -205,14 +205,60 @@ export const caseStudy = {
     "Shipped through a recurring \"State of the Product\" release cadence — bi-weekly to monthly, scaling to quarterly for larger releases — that keeps Sales, Concierge, Admin, and Marketing aligned on what shipped, what's changing, and what's next.",
 };
 
-export const testimonials = [
+export type Testimonial = {
+  quote: string;
+  name: string;
+  title: string;
+  company?: string;
+  photo?: string;
+};
+
+export const testimonials: Testimonial[] = [
   {
     quote:
       "Lucas brings both vision and execution to product development. He has an exceptional ability to identify opportunities for innovation while working closely with the team to turn those ideas into tangible progress. His collaborative approach ensures that technology, product strategy, and business goals remain aligned. Lucas's leadership has been central to advancing our platform and continuously improving the experience we deliver to our users.",
     name: "Shelli Pavone",
     title: "President",
     company: "Inlightened",
-    photo: "/testimonials/shelli-pavone.jpg" as string | undefined,
+    photo: "/testimonials/shelli-pavone.jpg",
+  },
+  {
+    quote:
+      "Lucas has a solid grasp of both the user side and the technical side, which makes him effective at keeping projects moving without losing sight of what actually matters. We shipped multiple projects together, and his discipline and sharp judgment consistently helped us get to the finish line.",
+    name: "Nic Rosental",
+    title: "Tech Founder & Fractional CTO",
+    photo: "/testimonials/nic-rosental.jpg",
+  },
+  {
+    quote:
+      "Lucas Longacre blends deep experience and passion in AI, storytelling, production, and education to customize approaches that get compelling results efficiently. I've been lucky to work with Lucas across formats and seek his insights regularly to help navigate how emerging technologies can support my goals.",
+    name: "Wil Kristin",
+    title: "Strategic Communications Director",
+    company: "Beneficial State Foundation",
+    photo: "/testimonials/wil-kristin.jpg",
+  },
+  {
+    quote:
+      "Collaborating with Lucas on AI projects has been an exciting journey. He has a unique ability to tackle intricate technical challenges that deliver elegant solutions. Lucas seamlessly navigates emerging technologies, mastering them to enhance project outcomes. A steadfast collaborator, he consistently strives for excellence, ensuring the optimal success of our AI products.",
+    name: "Lauren Carroll",
+    title: "CMO",
+    company: "Mebot AI Corp",
+    photo: "/testimonials/lauren-carroll.jpg",
+  },
+  {
+    quote:
+      "I have known and worked with Lucas for many years now and I have come to depend on, and admire, his dependability, creativity and problem solving. This has always proven true for jobs I have recommended him for as well as projects we have done together.",
+    name: "Tim Williams",
+    title: "Executive Director",
+    company: "Oregon Film",
+    photo: "/testimonials/tim-williams.jpg",
+  },
+  {
+    quote:
+      "Lucas is always on the cutting edge of technology. For years he's been a reliable resource for new technology; how to apply it to my business and how it will be used in the future. Knowledge is a passion for him.",
+    name: "Jamilla R Tai",
+    title: "Executive Director",
+    company: "Responsible Media Group",
   },
 ];
 
