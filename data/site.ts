@@ -259,6 +259,7 @@ export const testimonials: Testimonial[] = [
     name: "Jamilla R Tai",
     title: "Executive Director",
     company: "Responsible Media Group",
+    photo: "/testimonials/jamilla-tai.jpg",
   },
 ];
 
