@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { caseStudies } from "@/data/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -22,11 +23,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.8,
     },
-    {
-      url: "https://lucaslongacre.com/case-study/inlightened",
+    ...caseStudies.map((study) => ({
+      url: `https://lucaslongacre.com/case-study/${study.slug}`,
       lastModified: now,
-      changeFrequency: "monthly",
+      changeFrequency: "monthly" as const,
       priority: 0.8,
-    },
+    })),
   ];
 }

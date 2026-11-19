@@ -159,9 +159,32 @@ export const education = [
   { degree: "Certificate, Full Stack Development", school: "UT Austin" },
 ];
 
-export const caseStudy = {
+export type CaseStudyData = {
+  slug: string;
+  org: string;
+  role: string;
+  url?: string;
+  urlLabel?: string;
+  summary: string;
+  seoTitle: string;
+  seoDescription: string;
+  intro: string;
+  stats: { value: string; label: string }[];
+  milestones: { period: string; title: string; description: string }[];
+  closingNote: string;
+};
+
+const inlightenedCaseStudy: CaseStudyData = {
+  slug: "inlightened",
   org: "Inlightened",
+  role: "Head of Product",
   url: "https://www.getinlightened.com",
+  urlLabel: "getinlightened.com",
+  summary:
+    "From early-stage MVP to a stability rebuild, 10x expert-panel growth, the platform's first AI feature, and a 1M+ expert integration.",
+  seoTitle: "Inlightened Case Study — Head of Product | Lucas Longacre",
+  seoDescription:
+    "How Lucas Longacre led Inlightened from early-stage MVP through a stability rebuild, 10x expert-panel growth, its first AI feature, and a 1M+ expert parent-company integration.",
   intro:
     "I joined Inlightened when the platform was still an early-stage MVP. Since then I've led it through a stability rebuild, a 10x growth phase, the platform's first AI feature, and now the product integration of our parent company's 1M+ expert panel.",
   stats: [
@@ -204,6 +227,66 @@ export const caseStudy = {
   closingNote:
     "Shipped through a recurring \"State of the Product\" release cadence — bi-weekly to monthly, scaling to quarterly for larger releases — that keeps Sales, Concierge, Admin, and Marketing aligned on what shipped, what's changing, and what's next.",
 };
+
+const houseWithAPoolCaseStudy: CaseStudyData = {
+  slug: "house-with-a-pool",
+  org: "House with a Pool",
+  role: "Product architect & builder",
+  url: "https://housewithapool.xyz",
+  urlLabel: "housewithapool.xyz",
+  summary:
+    "Dozens of influencer lists unified into one classified database, with outreach, RSVPs, and insights on top, built with Claude Code in about nine weeks.",
+  seoTitle: "House with a Pool Case Study — Internal Platform Built with Claude Code | Lucas Longacre",
+  seoDescription:
+    "How Lucas Longacre designed and built an internal platform for House with a Pool with Claude Code: a unified, classified influencer database, outreach and RSVP tracking, AI-assisted workflows, and an insights dashboard.",
+  intro:
+    "House with a Pool runs influencer campaigns and events, and its contacts and workflow were spread across dozens of lists, spreadsheets, Airtable, and email. I designed and built one internal platform that turned those lists into a single classified database of thousands of influencers, then put outreach, RSVP sign-up, event check-in, and an insights dashboard on top of it. A working outreach platform was live within the first two days, and the full platform came together in about nine weeks, built with Claude Code.",
+  stats: [
+    { value: "1 database", label: "Built from dozens of lists into thousands of classified influencers" },
+    { value: "9 weeks", label: "From first commit to a full operations platform" },
+    { value: "3", label: "AI-assisted workflows: outreach drafts, tags, and social lookup" },
+  ],
+  milestones: [
+    {
+      period: "Sep 2026",
+      title: "Turned dozens of lists into one classified influencer database",
+      description:
+        "Combined dozens of separate lists into a single database of thousands of influencers, cleaned up and classified by region, tier, and affinity tags, with search, filters by follower range, profile cards, and bulk actions. The data itself is now an asset that outlasts any single campaign.",
+    },
+    {
+      period: "Sep 2026",
+      title: "Built the outreach and event engine",
+      description:
+        "Campaign and event rosters, branded email templates with a rich-text editor and live preview, merge fields, batch and drip sending with automatic reminders, RSVP and sign-up pages where guests confirm and add a plus-one, and QR check-in with capacity tracking.",
+    },
+    {
+      period: "Sep 2026",
+      title: "Added AI where it saves the most time",
+      description:
+        "AI-drafted outreach emails that staff edit before sending, AI-suggested affinity tags that a person approves, and an AI lookup that finds missing social handles as a background job.",
+    },
+    {
+      period: "Oct 2026",
+      title: "Added insights and opened it up to the whole team",
+      description:
+        "A dashboard with audience breakdowns and filterable, exportable reports; role-based access for executives, admins, staff, hourly team members, and clients; invite-based onboarding; employee time tracking with weekly review; and an in-app help center so new users can get started without training.",
+    },
+    {
+      period: "Oct – Nov 2026",
+      title: "Hardened it for daily operations",
+      description:
+        "Scheduled database backups, Google Sheets sync so campaigns stay in step with the sheets the team already uses, Quick Mail for one-off sends, and a round of fixes driven directly by team review sessions.",
+    },
+  ],
+  closingNote:
+    "I defined the product, data model, classification scheme, permissions, and workflows, then directed the build with Claude Code, shipping in small releases and refining from the team's feedback. It's a private internal tool, so there's no public demo, but I'm happy to walk through it in a conversation.",
+};
+
+export const caseStudies: CaseStudyData[] = [inlightenedCaseStudy, houseWithAPoolCaseStudy];
+
+export function getCaseStudy(slug: string): CaseStudyData | undefined {
+  return caseStudies.find((study) => study.slug === slug);
+}
 
 export type Testimonial = {
   quote: string;

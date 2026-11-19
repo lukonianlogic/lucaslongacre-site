@@ -7,7 +7,7 @@ const links = [
   { href: "/#consulting", label: "Consulting" },
   { href: "/#about", label: "About" },
   { href: "/#experience", label: "Experience" },
-  { href: "/case-study/inlightened", label: "Case Study" },
+  { href: "/#case-studies", label: "Case Studies" },
   { href: "/signal-and-noise", label: "Signal & Noise" },
   { href: "/#writing", label: "Writing" },
   { href: "/#contact", label: "Contact" },

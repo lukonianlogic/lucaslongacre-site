@@ -4,7 +4,7 @@ import FraudProtection from "@/components/FraudProtection";
 import About from "@/components/About";
 import Skills from "@/components/Skills";
 import Experience from "@/components/Experience";
-import CaseStudy from "@/components/CaseStudy";
+import CaseStudies from "@/components/CaseStudies";
 import Testimonials from "@/components/Testimonials";
 import Podcast from "@/components/Podcast";
 import Writing from "@/components/Writing";
@@ -35,7 +35,7 @@ export default function Home() {
       <About />
       <Skills />
       <Experience />
-      <CaseStudy />
+      <CaseStudies />
       <Testimonials />
       <Podcast />
       <Writing />
