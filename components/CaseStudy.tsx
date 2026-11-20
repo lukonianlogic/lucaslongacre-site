@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { CaseStudyData } from "@/data/site";
 import Eyebrow from "@/components/Eyebrow";
 
@@ -37,6 +38,32 @@ export default function CaseStudy({ study }: { study: CaseStudyData }) {
             </div>
           ))}
         </div>
+
+        {study.screenshots && study.screenshots.length > 0 && (
+          <div
+            className={`mt-10 grid grid-cols-1 items-start gap-4 ${
+              study.screenshots.length > 1 ? "sm:grid-cols-2" : ""
+            }`}
+          >
+            {study.screenshots.map((shot) => (
+              <figure key={shot.src}>
+                <div className="overflow-hidden rounded-xl border border-border bg-background">
+                  <Image
+                    src={shot.src}
+                    alt={shot.alt}
+                    width={shot.width}
+                    height={shot.height}
+                    sizes="(min-width: 1024px) 480px, 100vw"
+                    className="h-auto w-full"
+                  />
+                </div>
+                {shot.caption && (
+                  <figcaption className="mt-2 text-xs text-muted">{shot.caption}</figcaption>
+                )}
+              </figure>
+            ))}
+          </div>
+        )}
 
         <ol className="mt-12 space-y-10 border-l border-border pl-6 sm:pl-8">
           {study.milestones.map((milestone) => (

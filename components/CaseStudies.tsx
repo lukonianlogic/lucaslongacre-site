@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { caseStudies } from "@/data/site";
 import Eyebrow from "@/components/Eyebrow";
@@ -18,6 +19,17 @@ export default function CaseStudies() {
               href={`/case-study/${study.slug}`}
               className="group flex flex-col rounded-2xl border border-border border-t-2 border-t-accent bg-background p-6 transition-colors hover:border-accent"
             >
+              {study.screenshots?.[0] && (
+                <div className="relative mb-5 aspect-[2/1] overflow-hidden rounded-xl border border-border bg-surface">
+                  <Image
+                    src={study.screenshots[0].src}
+                    alt={study.screenshots[0].alt}
+                    fill
+                    sizes="(min-width: 1024px) 480px, 100vw"
+                    className="object-cover object-left-top transition-transform duration-300 group-hover:scale-[1.02]"
+                  />
+                </div>
+              )}
               <span className="font-mono text-xs uppercase tracking-wider text-muted">
                 {study.role}
               </span>

@@ -159,6 +159,14 @@ export const education = [
   { degree: "Certificate, Full Stack Development", school: "UT Austin" },
 ];
 
+export type Screenshot = {
+  src: string;
+  alt: string;
+  caption?: string;
+  width: number;
+  height: number;
+};
+
 export type CaseStudyData = {
   slug: string;
   org: string;
@@ -172,6 +180,7 @@ export type CaseStudyData = {
   stats: { value: string; label: string }[];
   milestones: { period: string; title: string; description: string }[];
   closingNote: string;
+  screenshots?: Screenshot[];
 };
 
 const inlightenedCaseStudy: CaseStudyData = {
@@ -226,6 +235,22 @@ const inlightenedCaseStudy: CaseStudyData = {
   ],
   closingNote:
     "Shipped through a recurring \"State of the Product\" release cadence — bi-weekly to monthly, scaling to quarterly for larger releases — that keeps Sales, Concierge, Admin, and Marketing aligned on what shipped, what's changing, and what's next.",
+  screenshots: [
+    {
+      src: "/screenshots/inlightened-engagements.jpg",
+      alt: "Inlightened engagements dashboard listing expert interviews with their status",
+      caption: "Client view: tracking expert engagements and their status",
+      width: 1600,
+      height: 791,
+    },
+    {
+      src: "/screenshots/inlightened-projects.jpg",
+      alt: "Inlightened projects page showing project invitations and responses",
+      caption: "Expert view: project invitations and responses",
+      width: 1600,
+      height: 1146,
+    },
+  ],
 };
 
 const houseWithAPoolCaseStudy: CaseStudyData = {
@@ -280,6 +305,15 @@ const houseWithAPoolCaseStudy: CaseStudyData = {
   ],
   closingNote:
     "I defined the product, data model, classification scheme, permissions, and workflows, then directed the build with Claude Code, shipping in small releases and refining from the team's feedback. It's a private internal tool, so there's no public demo, but I'm happy to walk through it in a conversation.",
+  screenshots: [
+    {
+      src: "/screenshots/house-with-a-pool-admin.jpg",
+      alt: "House with a Pool admin overview showing team accounts, live time tracking, hours logged, and campaigns tracked",
+      caption: "Admin overview: team access, live time tracking, and campaign totals",
+      width: 1600,
+      height: 453,
+    },
+  ],
 };
 
 export const caseStudies: CaseStudyData[] = [inlightenedCaseStudy, houseWithAPoolCaseStudy];
@@ -287,6 +321,60 @@ export const caseStudies: CaseStudyData[] = [inlightenedCaseStudy, houseWithAPoo
 export function getCaseStudy(slug: string): CaseStudyData | undefined {
   return caseStudies.find((study) => study.slug === slug);
 }
+
+export const sideProjects = {
+  headline: "Built for fun",
+  intro:
+    "I build outside of work, too. These are two personal projects I designed and built with Claude Code to scratch my own itches. They're hobby projects, and they show how I work: a clear idea, a real architecture, and shipping it.",
+  projects: [
+    {
+      name: "Dungeon Maester",
+      tag: "Tabletop RPG",
+      tagline: "An AI-assisted toolkit for running D&D campaigns, from prep to the table.",
+      highlights: [
+        "Battle maps with fog of war, monster and player tokens, and a separate player-facing screen",
+        "A Claude-powered assistant, session-recording transcription, and summaries that skip the table chatter",
+        "Character-sheet import: upload a PDF, Word, or Excel sheet and AI turns it into a structured character",
+        "Player invite links, hidden stats, session scheduling with calendar invites, and a soundscape player",
+      ],
+      stack: ["Next.js", "TypeScript", "Firebase", "Claude API", "Whisper"],
+      screenshots: [
+        {
+          src: "/screenshots/dungeon-maester-battle-map.jpg",
+          alt: "Dungeon Maester battle map with monster and player tokens and a token sidebar",
+          width: 1600,
+          height: 844,
+        },
+        {
+          src: "/screenshots/dungeon-maester-campaigns.jpg",
+          alt: "Dungeon Maester campaigns dashboard with two active campaigns",
+          width: 1600,
+          height: 609,
+        },
+      ] as Screenshot[] | undefined,
+    },
+    {
+      name: "Family Media Archive",
+      tag: "Family",
+      tagline: "A private, sign-in-only home for the family's photos and videos.",
+      highlights: [
+        "Private by default: only signed-in family members can see or add anything",
+        "Video thumbnails generated automatically by a cloud function the moment a file is uploaded",
+        "Folders, albums, tags, search, and an in-app video player",
+        "A bulk-import pipeline with progress tracking that moved a Vimeo video archive from an external drive into the cloud",
+      ],
+      stack: ["Next.js", "TypeScript", "Firebase", "Cloud Functions", "ffmpeg"],
+      screenshots: [
+        {
+          src: "/screenshots/family-media-archive.jpg",
+          alt: "Family Media Archive library with search, upload, and filters for videos and photos",
+          width: 1600,
+          height: 353,
+        },
+      ] as Screenshot[] | undefined,
+    },
+  ],
+};
 
 export type Testimonial = {
   quote: string;
